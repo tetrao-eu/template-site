@@ -31,7 +31,7 @@ As usual:
 
 Thee following commands are written for a GNU/Linux environment (**Debian**, if you want to know). So please adapt it
 to your system if it is necessary. Also they are running supposing that you are locating inside the folder
-`templatesite`, the root of this project.
+`template-site`, the root of this project.
 
 ## Database
 
@@ -55,8 +55,8 @@ Next create the tables and add some data to the database using the script `conf/
 This script will create an account table with two users and a message table with one message.
 
 ### Database mapping code
-The file `utils.db.Tables.scala` contains the database mapping code. It has been generated running the main class
-`models.util.SourceCodeGenerator`. If you want to regenerate the database mapping code for any reason, check the
+The file `models.db.Tables.scala` contains the database mapping code. It has been generated running the main class
+`utils.db.SourceCodeGenerator`. If you want to regenerate the database mapping code for any reason, check the
 config file `conf/application.conf` and run:
 
     sbt tables
