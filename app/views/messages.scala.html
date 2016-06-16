@@ -1,0 +1,53 @@
+@(account: Entity[Account], messageSeq:Seq[Entity[Message]], addMessageForm:Form[Message])(implicit webJarAssets: WebJarAssets)
+@_template(Some(account)) {
+    <div class="row column">
+        <h2>Messages</h2>
+    </div>
+    <div class="row column">
+        <table class="stack">
+            <thead>
+                <tr>
+                    <th width="60%">Content</th>
+                    <th>Tags</th>
+                    <th width="100">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(message <- messageSeq) {
+                    <tr>
+                        <td>@message.data.content</td>
+                        <td>@message.data.tagSet.mkString(",")</td>
+                        <td>
+                            <div class="input-group-button">
+                                <form method="post" action="@routes.RestrictedApplication.deleteMessage(message.id)">
+                                    <button type="submit" class="button small expanded alert">Delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <form method="post" action="@routes.RestrictedApplication.addMessage()">
+                        <td>
+                            <input class="input-group-field" type="text" name="content" value="@addMessageForm("content").value" placeholder="Some message..." required/>
+                            @addMessageForm.error("content").map { formError =>
+                                <span class="form-error is-visible">@formError.message</span>
+                            }
+                        </td>
+                        <td>
+                            <input class="input-group-field" type="text" name="tags" value="@addMessageForm("tags").value" placeholder="Optionaly some tags coma separated..."/>
+                            @addMessageForm.error("tags").map { formError =>
+                                <span class="form-error is-visible">@formError.message</span>
+                            }
+                        </td>
+                        <td>
+                            <div class="input-group-button">
+                                <button type="submit" class="button small expanded success">Add</button>
+                            </div>
+                        </td>
+                    </form>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+}

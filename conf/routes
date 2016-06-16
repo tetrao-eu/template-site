@@ -1,0 +1,19 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+GET     /                           controllers.PublicApplication.index()
+
+GET		/login						controllers.Authentication.prepareLogin()
+POST	/login						controllers.Authentication.login()
+GET		/logout						controllers.Authentication.logout()
+
+GET		/account  					controllers.RestrictedApplication.account()
+POST	/account/update 			controllers.RestrictedApplication.updateAccount()
+GET     /account/add    			controllers.RestrictedApplication.newAccount()
+POST	/account/add    			controllers.RestrictedApplication.addAccount()
+GET		/messages  					controllers.RestrictedApplication.messages()
+POST    /messages/add               controllers.RestrictedApplication.addMessage()
+POST    /messages/:id/delete        controllers.RestrictedApplication.deleteMessage(id:Int)
+
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET     /webjars/*file              controllers.WebJarAssets.at(file)

@@ -1,0 +1,57 @@
+@(account: Entity[Account], accountForm:Form[FormDataAccount], insert:Boolean)(implicit webJarAssets: WebJarAssets)
+@_template(Some(account)) {
+    @defining(
+        if(insert) ("Add Account", routes.RestrictedApplication.addAccount(), "Insert")
+        else ("Update Account", routes.RestrictedApplication.updateAccount(), "Update")
+    ) { case (h2Title, formURL, submitLabel) =>
+        <div class="row column">
+            <h2>@h2Title</h2>
+        </div>
+        <form method="post" action="@formURL">
+            <div class="row column">
+                <label>Name
+                    <input type="text" name="name" value="@accountForm("name").value" placeholder="name" required>
+                    @accountForm.error("name").map { formError =>
+                        <span class="form-error is-visible">@formError.message</span>
+                    }
+                </label>
+            </div>
+            <div class="row column">
+                <label>Email
+                    <input type="email" name="email" value="@accountForm("email").value" placeholder="email" required>
+                    @accountForm.error("email").map { formError =>
+                        <span class="form-error is-visible">@formError.message</span>
+                    }
+                </label>
+            </div>
+            <div class="row column">
+                <label>Password
+                    <input type="password" name="password" value="@accountForm("password").value" placeholder="password">
+                    @accountForm.error("password").map { formError =>
+                        <span class="form-error is-visible">@formError.message</span>
+                    }
+                </label>
+            </div>
+            <div class="row column">
+                <label>Password again
+                    <input type="password" name="passwordAgain" value="@accountForm("passwordAgain").value" placeholder="password again">
+                    @accountForm.error("passwordAgain").map { formError =>
+                        <span class="form-error is-visible">@formError.message</span>
+                    }
+                </label>
+            </div>
+            <div class="row">
+                <div class="large-6 medium-10 small-12 large-centered medium-centered columns">
+                    <div class="row">
+                        <div class="small-6 columns">
+                            <button type="submit" class="button expanded success">@submitLabel</button>
+                        </div>
+                        <div class="small-6 columns">
+                            <a href="@routes.RestrictedApplication.messages()" class="button expanded secondary">Cancel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    }
+}

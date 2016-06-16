@@ -1,0 +1,65 @@
+@(account: Option[Entity[Account]])(content: Html)(implicit webJarAssets: WebJarAssets)
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Tetrao - Enabling connections</title>
+        <link href="@routes.Assets.at("img/favicon.png")" rel="shortcut icon">
+        <link rel='stylesheet' href="@routes.WebJarAssets.at(webJarAssets.locate("foundation.css"))">
+        <link rel='stylesheet' href="@routes.Assets.at("css/templatesite.css")">
+    </head>
+    <body>
+        <div id="header" class="top-bar">
+            <div class="row">
+                <div class="top-bar-left">
+                    <ul class="dropdown menu" data-dropdown-menu>
+                        <li class="menu-text"><a href="@routes.PublicApplication.index()">Template Site</a></li>
+                        <li class="has-submenu">
+                            <a href="#">Languages</a>
+                            <ul class="submenu menu vertical" data-submenu>
+                                <li><a href="#">English</a></li>
+                                <li><a href="#">Français</a></li>
+                                <li><a href="#">Deutsche</a></li>
+                                <li><a href="#">Lëtzebuergesch</a></li>
+                                <li><a href="#">Català</a></li>
+                                <li><a href="#">Español</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="top-bar-right">
+                    <ul class="menu">
+                    @if(account.isEmpty) {
+                        <li><a href="@routes.Authentication.login()" class="button success">Login</a></li>
+                    } else {
+                        <li><a href="@routes.RestrictedApplication.account()" title="Edit Your Account">Hello <strong>@account.get.data.name</strong>!</a></li>
+                        <li><a href="@routes.RestrictedApplication.messages()" title="Manage messages">Messages</a></li>
+                        @if(account.get.data.isAdmin) {
+                            <li><a href="@routes.RestrictedApplication.newAccount()" title="Add an Account">Add Account</a></li>
+                        }
+                        <li><a href="@routes.Authentication.logout()" class="button alert">Logout</a></li>
+                    }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="main-content" class="row column">
+            <!-- <CONTENT> -->
+            @content
+            <!-- </CONTENT> -->
+        </div>
+        <div id="footer" class="bottom-toolbar">
+            <div class="row column">
+                <ul class="menu">
+                    <li><a href="https://github.com/tetrao-eu/template-site">Template Site at GitHub</a></li>
+                    <li><a href="https://tetrao.eu/">Tetrao Website</a></li>
+                </ul>
+            </div>
+        </div>
+        <script src="@routes.WebJarAssets.at(webJarAssets.locate("jquery.js"))"></script>
+        <script src="@routes.WebJarAssets.at(webJarAssets.locate("foundation.js"))"></script>
+        <script>$(document).foundation()</script>
+    </body>
+</html>

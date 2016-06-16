@@ -1,0 +1,37 @@
+li.menu-text a {
+    padding: 0;
+    font-size: 120%;
+    color: #444444;
+}
+
+li.menu-text a:hover {
+    color: #1585cf;
+}
+
+#header {
+    border-bottom: #444444 solid 1px;
+}
+
+/*
+Copied from https://css-tricks.com/snippets/css/sticky-footer/
+*/
+#main-content {
+    padding-top: 10px;
+    min-height: 100%;
+    margin-bottom: -50px;
+}
+
+#main-content:after {
+    content: "";
+    display: block;
+}
+
+#footer, #main-content:after {
+    height: 50px;
+}
+
+#footer {
+    border-top: #444444 solid 1px;
+    background-color: #e6e6e6;
+    padding-top: 8px;
+}
