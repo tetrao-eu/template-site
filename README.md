@@ -6,6 +6,8 @@ faster in an efficient and cost-effective way.
 This is an internal project and we decided to publish it to promote the use of a lot of open source projects we
 love and we use every day and make our job easier.
 
+You can see this project running here: [https://template-site.tetrao.eu/](https://template-site.tetrao.eu/).
+
 **Template Site** is an skeleton of a web application based on:
 
 * [Scala 2.11.8 as programming language](http://www.scala-lang.org/)
@@ -29,7 +31,7 @@ As usual:
 
     git clone https://github.com/tetrao-eu/template-site.git
 
-Thee following commands are written for a GNU/Linux environment (**Debian**, if you want to know). So please adapt it
+The following commands are written for a GNU/Linux environment (**Debian**, if you want to know). So please adapt it
 to your system if it is necessary. Also they are running supposing that you are locating inside the folder
 `template-site`, the root of this project.
 
@@ -73,3 +75,6 @@ The plugin [sbt-updates](https://github.com/rtimush/sbt-updates) is installed (s
 if all the dependencies are up to date, it is necessary to execute:
 
     sbt dependencyUpdates
+
+## License
+Licensing conditions (MIT) can be found in `LICENSE` file.
