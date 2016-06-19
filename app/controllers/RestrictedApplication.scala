@@ -1,6 +1,6 @@
 package controllers
 
-import java.time.ZonedDateTime
+import java.time.OffsetDateTime
 import javax.inject.{Inject, Singleton}
 
 import com.github.t3hnar.bcrypt.Password
@@ -58,18 +58,19 @@ class RestrictedApplication @Inject()(val database: DBService, implicit val webJ
           val form = FormData.addAccount.fill(accountFormData).withError("passwordAgain", "Passwords don't match")
           Future.successful(BadRequest(views.html.account(loggedIn, form, insert = false)))
         } else {
+          val now = OffsetDateTime.now()
           val update = if(accountFormData.password.nonEmpty) {
             //update also password
             val bcryptedPassword = accountFormData.password.bcrypt
             val q = for {
               row <- Tables.Account if row.id === loggedIn.id
             } yield (row.name, row.email, row.password, row.updatedAt)
-            q.update((accountFormData.name, accountFormData.email, bcryptedPassword, ZonedDateTime.now()))
+            q.update((accountFormData.name, accountFormData.email, bcryptedPassword, now))
           } else {
             val q = for {
               row <- Tables.Account if row.id === loggedIn.id
             } yield (row.name, row.email, row.updatedAt)
-            q.update((accountFormData.name, accountFormData.email, ZonedDateTime.now()))
+            q.update((accountFormData.name, accountFormData.email, now))
           }
           database.runAsync(update).map { _ =>
             Logger.info(s"Updated account of ${loggedIn.data.email}")
@@ -89,7 +90,7 @@ class RestrictedApplication @Inject()(val database: DBService, implicit val webJ
       formWithErrors => Future.successful(BadRequest(views.html.account(loggedIn, formWithErrors, insert = true))),
       accountFormData => {
         if(accountFormData.password.nonEmpty && accountFormData.password == accountFormData.passwordAgain) {
-          val now = ZonedDateTime.now()
+          val now = OffsetDateTime.now()
           val row = Tables.AccountRow(
             id = -1,
             name = accountFormData.name,

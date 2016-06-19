@@ -59,7 +59,7 @@ object SourceCodeGenerator extends App {
           override def rawType: String = model.tpe match {
             case "java.sql.Date" => "java.time.LocalDate"
             case "java.sql.Time" => "java.time.LocalTime"
-            case "java.sql.Timestamp" => "java.time.ZonedDateTime"
+            case "java.sql.Timestamp" => "java.time.OffsetDateTime"
 
             // currently, all types that's not built-in support were mapped to `String`
             case "String" => model.options.find(_.isInstanceOf[ColumnOption.SqlType])

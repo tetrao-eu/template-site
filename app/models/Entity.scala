@@ -1,8 +1,8 @@
 package models
 
-import java.time.ZonedDateTime
+import java.time.OffsetDateTime
 
-import models.db.{Tables, AccountRole}
+import models.db.{AccountRole, Tables}
 
 case class Entity[T](id:Int, data:T)
 
@@ -25,7 +25,7 @@ object Account {
 
 case class Message(content:String, tagSet:Set[String]) {
   def toRow() = {
-    val now = ZonedDateTime.now()
+    val now = OffsetDateTime.now()
     Tables.MessageRow(
       id = -1,
       content = content,

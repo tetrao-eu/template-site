@@ -1,6 +1,6 @@
 package models.db
 
-// AUTO-GENERATED Slick data model [2016-06-15T16:45:28.106+02:00[Europe/Madrid]]
+// AUTO-GENERATED Slick data model [2016-06-19T16:41:16.325+02:00[Europe/Madrid]]
 
 /** Stand-alone Slick data model for immediate use */
 object Tables extends {
@@ -28,11 +28,11 @@ trait Tables {
    *  @param role Database column role SqlType(account_role)
    *  @param createdAt Database column created_at SqlType(timestamptz)
    *  @param updatedAt Database column updated_at SqlType(timestamptz) */
-  case class AccountRow(id: Int, name: String, email: String, password: String, role: models.db.AccountRole.Value, createdAt: java.time.ZonedDateTime, updatedAt: java.time.ZonedDateTime)
+  case class AccountRow(id: Int, name: String, email: String, password: String, role: models.db.AccountRole.Value, createdAt: java.time.OffsetDateTime, updatedAt: java.time.OffsetDateTime)
   /** GetResult implicit for fetching AccountRow objects using plain SQL queries */
-  implicit def GetResultAccountRow(implicit e0: GR[Int], e1: GR[String], e2: GR[models.db.AccountRole.Value], e3: GR[java.time.ZonedDateTime]): GR[AccountRow] = GR{
+  implicit def GetResultAccountRow(implicit e0: GR[Int], e1: GR[String], e2: GR[models.db.AccountRole.Value], e3: GR[java.time.OffsetDateTime]): GR[AccountRow] = GR{
     prs => import prs._
-    AccountRow.tupled((<<[Int], <<[String], <<[String], <<[String], <<[models.db.AccountRole.Value], <<[java.time.ZonedDateTime], <<[java.time.ZonedDateTime]))
+    AccountRow.tupled((<<[Int], <<[String], <<[String], <<[String], <<[models.db.AccountRole.Value], <<[java.time.OffsetDateTime], <<[java.time.OffsetDateTime]))
   }
   /** Table description of table account. Objects of this class serve as prototypes for rows in queries. */
   class Account(_tableTag: Tag) extends Table[AccountRow](_tableTag, "account") {
@@ -51,9 +51,9 @@ trait Tables {
     /** Database column role SqlType(account_role) */
     val role: Rep[models.db.AccountRole.Value] = column[models.db.AccountRole.Value]("role")
     /** Database column created_at SqlType(timestamptz) */
-    val createdAt: Rep[java.time.ZonedDateTime] = column[java.time.ZonedDateTime]("created_at")
+    val createdAt: Rep[java.time.OffsetDateTime] = column[java.time.OffsetDateTime]("created_at")
     /** Database column updated_at SqlType(timestamptz) */
-    val updatedAt: Rep[java.time.ZonedDateTime] = column[java.time.ZonedDateTime]("updated_at")
+    val updatedAt: Rep[java.time.OffsetDateTime] = column[java.time.OffsetDateTime]("updated_at")
 
     /** Uniqueness Index over (email) (database name account_email_key) */
     val index1 = index("account_email_key", email, unique=true)
@@ -67,11 +67,11 @@ trait Tables {
    *  @param tagList Database column tag_list SqlType(_text), Length(2147483647,false)
    *  @param createdAt Database column created_at SqlType(timestamptz)
    *  @param updatedAt Database column updated_at SqlType(timestamptz) */
-  case class MessageRow(id: Int, content: String, tagList: List[String], createdAt: java.time.ZonedDateTime, updatedAt: java.time.ZonedDateTime)
+  case class MessageRow(id: Int, content: String, tagList: List[String], createdAt: java.time.OffsetDateTime, updatedAt: java.time.OffsetDateTime)
   /** GetResult implicit for fetching MessageRow objects using plain SQL queries */
-  implicit def GetResultMessageRow(implicit e0: GR[Int], e1: GR[String], e2: GR[List[String]], e3: GR[java.time.ZonedDateTime]): GR[MessageRow] = GR{
+  implicit def GetResultMessageRow(implicit e0: GR[Int], e1: GR[String], e2: GR[List[String]], e3: GR[java.time.OffsetDateTime]): GR[MessageRow] = GR{
     prs => import prs._
-    MessageRow.tupled((<<[Int], <<[String], <<[List[String]], <<[java.time.ZonedDateTime], <<[java.time.ZonedDateTime]))
+    MessageRow.tupled((<<[Int], <<[String], <<[List[String]], <<[java.time.OffsetDateTime], <<[java.time.OffsetDateTime]))
   }
   /** Table description of table message. Objects of this class serve as prototypes for rows in queries. */
   class Message(_tableTag: Tag) extends Table[MessageRow](_tableTag, "message") {
@@ -86,9 +86,9 @@ trait Tables {
     /** Database column tag_list SqlType(_text), Length(2147483647,false) */
     val tagList: Rep[List[String]] = column[List[String]]("tag_list", O.Length(2147483647,varying=false))
     /** Database column created_at SqlType(timestamptz) */
-    val createdAt: Rep[java.time.ZonedDateTime] = column[java.time.ZonedDateTime]("created_at")
+    val createdAt: Rep[java.time.OffsetDateTime] = column[java.time.OffsetDateTime]("created_at")
     /** Database column updated_at SqlType(timestamptz) */
-    val updatedAt: Rep[java.time.ZonedDateTime] = column[java.time.ZonedDateTime]("updated_at")
+    val updatedAt: Rep[java.time.OffsetDateTime] = column[java.time.OffsetDateTime]("updated_at")
   }
   /** Collection-like TableQuery object for table Message */
   lazy val Message = new TableQuery(tag => new Message(tag))
