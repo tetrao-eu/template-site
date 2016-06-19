@@ -1,4 +1,4 @@
-# TEMPLATE-SITE 0.1.0
+# TEMPLATE-SITE 0.1.1
 The **Template Site** is a project created by [Tetrao](https://tetrao.eu/), a technology startup company specialized in
 Internet intelligent process automation. Our mission is enabling connections between people and businesses radically
 faster in an efficient and cost-effective way.

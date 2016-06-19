@@ -3,7 +3,7 @@ name := "template-site"
 //common settings for the project and subprojects
 lazy val commonSettings = Seq(
 	organization := "eu.tetrao",
-	version := "0.1.0",
+	version := "0.1.1",
 	scalaVersion := "2.11.8",
 	scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-target:jvm-1.8")
 )
