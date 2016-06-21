@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Play Framework with Slick, Slick-pg and Play2-auth - Activator Template</title>
+    </head>
+    <body>
+        <div>
+            <h2>Before you start</h2>
+            <p>
+                This is a starter application with Play Framework 2.5, Slick plus Slick-pg (so you will need PostgreSQL)
+                and Play2-Auth.
+            </p>
+            <p>
+                First you need to have a running instance of PostgreSQL 9.5. Check the
+                <a href="http://www.postgresql.org/download/">PostgreSQL website</a> to more information about this step.
+            </p>
+        </div>
+        <div>
+            <h2>Database</h2>
+            <p>
+                First step is creating a cluster, a user and a database:
+            </p>
+            <pre>
+                <code>
+                    sudo -u postgres pg_createcluster -p 55555 --start 9.5 templatesite_cluster
+                    sudo -u postgres psql -p 55555 -c "CREATE USER templatesite_user PASSWORD '123';"
+                    sudo -u postgres psql -p 55555 -c "CREATE DATABASE templatesite_db WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'en_US.utf8' LC_CTYPE = 'en_US.utf8';"
+                    sudo -u postgres psql -p 55555 -c "ALTER DATABASE templatesite_db OWNER TO templatesite_user;"
+                </code>
+            </pre>
+            <p>
+                Next step is populating the database with a pair of tables and some initial data:
+            </p>
+            <pre>
+                <code>
+                    sudo -u postgres psql -p 55555 -d templatesite_db -f conf/database.sql
+                </code>
+            </pre>
+            <p>
+                This script will create an account table with two users and a message table with one message.
+            </p>
+        </div>
+        <div>
+            <h2>Running the application</h2>
+            <p>
+                Just execute <code>sbt run</code> and you will see at
+                <a href="http://localhost:9000">http://localhost:9000</a> something similar to this:
+            </p>
+            <p>
+                <img src="tutorial/screenshot.png" alt="screenshot" />
+            </p>
+        </div>
+        <div>
+            <h2>Structure of the application</h2>
+            <p>
+                The application has three controllers, the <code>Authentication</code> controller, implemented with
+                <a href="https://github.com/t2v/play2-auth/">Play2-Auth</a>, the <code>PublicApplication</code>, for the
+                non restricted part of the website (I mean, where no login is needed), and the
+                <code>RestrictedApplication</code>, that controls all the actions where a valid login is mandatory.
+            </p>
+            <p>
+                About the models, it is necessary to specify that the <code>models.db.Tables</code> has been generated from
+                the database. If you want to regenerate the database mapping code for any reason, check the
+                config file <code>conf/application.conf</code> and run <code>sbt tables</code>.
+            </p>
+            <p>
+                There also two more packages, <code>services.db</code>, with the trait <code>DBService</code> used to run
+                <a href="http://slick.lightbend.com/">Slick</a> actions over the database, and <code>utils.db</code>,
+                with the PostgreSQL driver needed to use the <a href="https://github.com/tminglei/slick-pg">Slick-pg</a>
+                extension library.
+            </p>
+        </div>
+    </body>
+</html>
