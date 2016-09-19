@@ -1,4 +1,4 @@
-# TEMPLATE-SITE 0.1.1
+# TEMPLATE-SITE 0.1.2
 The **Template Site** is a project created by [Tetrao](https://tetrao.eu/), a technology startup company specialized in
 Internet intelligent process automation. Our mission is enabling connections between people and businesses radically
 faster in an efficient and cost-effective way.
@@ -11,8 +11,8 @@ You can see this project running here: [https://template-site.tetrao.eu/](https:
 **Template Site** is an skeleton of a web application based on:
 
 * [Scala 2.11.8 as programming language](http://www.scala-lang.org/)
-* [SBT 0.13.11 as build tool](http://www.scala-sbt.org/)
-* [Play Framework 2.5.4 as web application framework](https://www.playframework.com/)
+* [SBT 0.13.12 as build tool](http://www.scala-sbt.org/)
+* [Play Framework 2.5.8 as web application framework](https://www.playframework.com/)
 * [Play2-auth 0.14.2 as authentication module for Play](https://github.com/t2v/play2-auth/)
 * [PostgreSQL 9.5 as database](http://www.postgresql.org)
 * [Slick 3.1.1 as database access layer](http://slick.lightbend.com)
